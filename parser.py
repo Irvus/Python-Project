@@ -9,7 +9,15 @@ def parser():
 
             for i in range(len(array)):
                 array[i] = re.sub('\n', '', array[i])
-                array[i] = array[i].strip('\"')
+                array[i] = array[i].strip('\"').strip()
+
+                try:
+                    array[i] = int(array[i])
+                except ValueError:
+                    try:
+                        array[i] = float(array[i])
+                    except Exception:
+                        pass
 
             arr.append(array[1:])
 
