@@ -11,9 +11,9 @@ def parser():
                 array[i] = re.sub('\n', '', array[i])
                 array[i] = array[i].strip('\"')
 
-            arr.append(array)
+            arr.append(array[1:])
 
     return arr
 
 
-# print(parser())
+print(parser())
