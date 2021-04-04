@@ -18,7 +18,7 @@ def parser():
         'Dec': '12'
     }
 
-    with open("/home/irvus/Programming/hse/python_project/Space_Corrected.csv") as f:  # TODO добавить относ. путь
+    with open("Space_Corrected.csv") as f:
         for line in f.readlines():
             array = re.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", line)
 
