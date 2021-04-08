@@ -1,5 +1,10 @@
 import re
 
+'''
+    Created ID.ON.TKNO WW:HE:N(
+    @ author: Ilia
+'''
+
 def parser():
     arr = []
 
