@@ -13,6 +13,12 @@ space_missions = pd.read_csv("Space_Corrected.csv")
 
 space_missions['Year'] = space_missions['Datum'].apply(lambda x: int(str(x).split()[3]))  # выцепляю интовый год
 space_missions['Month'] = space_missions['Datum'].apply(lambda x: str(x).split()[1])  # выцепляю месяц
+space_missions['Day of Week'] = space_missions['Datum'].apply(lambda x: str(x).split()[0])  # выцепляю день недели
+space_missions['Date'] = space_missions['Datum'].apply(lambda x: int(str(x).split()[2].replace(',', '')))  # число
+# space_missions['Time in Min'] = space_missions['Datum'].apply(lambda x: int(str(x).split()[4].split(':')[0]) * 24 +   # НЕ ПАШЕТ ИЗ-ЗА ТОГО, ЧТО НЕ ВЕЗДЕ ЕСТЬ ВРЕМЯ
+#                                                                        int(str(x).split()[4].split(':')[1]))  # Время в минутах
+space_missions.drop('Datum', axis=1, inplace=True)
+
 space_missions['Country'] = space_missions['Location'].apply(lambda x: str(x).split()[-1])  # заполняю страны как есть
 
 for i in range(space_missions.shape[0]):  # Make USSR Great Again!
@@ -24,16 +30,17 @@ space_missions = space_missions.drop(space_missions.columns[[0]], axis=1)  # В�
 space_missions.columns.values[0] = 'Numbers'  # Именую столбец с нумерацией
 space_missions.info()
 
+
 pt1 = pd.pivot_table(space_missions,
                      index=['Country'],
                      values=['Status Mission'],
-                     columns=['Status Mission'],
+                     # columns=['Status Mission'],
                      aggfunc=[len],
                      fill_value=0)
 
 
 plt.figure(figsize=(20, 6))
-space_missions['Launch Date_year'].value_counts().plot(kind='bar')
+#space_missions['Launch Date_year'].value_counts().plot(kind='bar')
 plt.xticks(rotation=90)
 plt.title('Number of launches per year')
 plt.show()
