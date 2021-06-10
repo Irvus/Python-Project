@@ -21,9 +21,5 @@ def to_3nf(df):
     df['Country'] = df['Location'].apply(
         lambda x: str(x).split()[-1])  # заполняю страны как есть
 
-    for i in range(df.shape[0]):  # Make USSR Great Again!
-        if df.at[i, 'Year'] <= 1991 and (df.at[i, 'Country'] == 'Russia' or df.at[i, 'Country'] == 'Kazakhstan'):
-            df.at[i, 'Country'] = 'USSR'
-
     df.drop(df.columns[[0, 1]], axis=1, inplace=True)  # Выпиливаю повторяющуюся нумерацию
 
