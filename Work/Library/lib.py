@@ -1,10 +1,12 @@
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 
 
 def reading(pwd):
     return pd.read_csv(pwd)
+
+
+def export_to_csv(df, title):
+    df.to_csv(path_or_buf=('Data/' + title + '.csv'))
 
 
 def to_3nf(df):
@@ -20,10 +22,8 @@ def to_3nf(df):
         lambda x: str(x).split()[-1])  # заполняю страны как есть
 
     for i in range(df.shape[0]):  # Make USSR Great Again!
-        if df.at[i, 'Year'] <= 1991 and (df.at[i, 'Country'] == 'Russia' or
-                                                     df.at[i, 'Country'] == 'Kazakhstan'):
+        if df.at[i, 'Year'] <= 1991 and (df.at[i, 'Country'] == 'Russia' or df.at[i, 'Country'] == 'Kazakhstan'):
             df.at[i, 'Country'] = 'USSR'
 
-    df = df.drop(df.columns[[0]], axis=1)  # Выпиливаю повторяющуюся нумерацию
-    df.columns.values[0] = 'Numbers'  # Именую столбец с нумерацией
-    df.info()
+    df.drop(df.columns[[0, 1]], axis=1, inplace=True)  # Выпиливаю повторяющуюся нумерацию
+

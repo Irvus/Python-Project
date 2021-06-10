@@ -1,1 +1,1 @@
-PWD = "Work/Data/Space_Corrected.csv"
+PWD = "Data/Space_Corrected.csv"
