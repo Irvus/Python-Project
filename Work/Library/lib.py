@@ -14,8 +14,7 @@ def to_3nf(df):
     df['Month'] = df['Datum'].apply(lambda x: str(x).split()[1])  # выцепляю месяц
     df['Day of Week'] = df['Datum'].apply(lambda x: str(x).split()[0])  # выцепляю день недели
     df['Date'] = df['Datum'].apply(lambda x: int(str(x).split()[2].replace(',', '')))  # число
-    # df['Time in Min'] = df['Datum'].apply(lambda x: int(str(x).split()[4].split(':')[0]) * 24 +   # НЕ ПАШЕТ ИЗ-ЗА ТОГО, ЧТО НЕ ВЕЗДЕ ЕСТЬ ВРЕМЯ
-    #                                                                        int(str(x).split()[4].split(':')[1]))  # Время в минутах
+    df['Time in Min'] = df['Datum'].apply(lambda x: int(int(str(x).split()[4].split(':')[0]) * 24 + int(str(x).split()[4].split(':')[1])) if (len(str(x).split()) > 4) else None)  # Время в минутах
     df.drop('Datum', axis=1, inplace=True)
 
     df['Country'] = df['Location'].apply(
