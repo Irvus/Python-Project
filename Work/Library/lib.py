@@ -19,8 +19,9 @@ def to_3nf(df):
                                                     if (len(str(x).split()) > 4) else None)  # Время в минутах
     df.drop('Datum', axis=1, inplace=True)
 
-    df['Country'] = df['Location'].apply(
-        lambda x: str(x).split()[-1])  # заполняю страны как есть
+    df['Country'] = df['Location'].apply(lambda x: str(x).split(', ')[-1])  # заполняю страны как есть
 
     df.drop(df.columns[[0, 1]], axis=1, inplace=True)  # Выпиливаю повторяющуюся нумерацию
+
+
 
