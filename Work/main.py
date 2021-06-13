@@ -74,6 +74,7 @@ def year_success(df):
     plt.bar(year, number, align='center')  # A bar chart
     plt.xlabel('Year')
     plt.ylabel('Number')
+    plt.title('Year/successful missions')
     plt.savefig('Graphics/year_success.png')
     plt.show()
 
@@ -85,7 +86,19 @@ def price_year(df):
     y = [152, 105, 122, 90, 103, 92, 76, 69, 65, 59]
     fig3, ax3 = plt.subplots()
     ax3.scatter(x, y)
+    plt.title('Year/price')
     fig3.savefig('Graphics/price_year.png')
+    plt.show()
+
+def number_year():
+    df = pd.read_csv("Data/Space_Corrected.csv")
+    df['Year'] = df['Datum'].apply(lambda x: str(x).split(', ')[-1])
+    df['Launch Date_year'] = df['Datum'].apply(lambda x:int(str(x).split()[3]))
+    fig4 = plt.figure(figsize=(80, 20))
+    df['Launch Date_year'].value_counts().plot(kind='bar')
+    plt.xticks(rotation=90)
+    plt.title('Number of launches per year')
+    fig4.savefig('Graphics/number_year.png')
     plt.show()
 
 space_missions = reading(PWD)
@@ -103,3 +116,4 @@ export_to_csv(pt3, "Сводная таблица 3")
 outcomesForRussia(space_missions)
 year_success(space_missions)
 price_year(space_missions)
+number_year()
