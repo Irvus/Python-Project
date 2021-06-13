@@ -22,8 +22,6 @@ def to_3nf(df):
     df['Time in Min'] = df['Datum'].apply(lambda x: int(int(str(x).split()[4].split(':')[0]) * 60 +
                                                         int(str(x).split()[4].split(':')[1]))
                                                     if (len(str(x).split()) > 4) else None)  # Время в минутах
-
-
     df.drop('Datum', axis=1, inplace=True)
 
     df['Country'] = df['Location'].apply(lambda x: str(x).split(', ')[-1])  # заполняю страны как есть
@@ -31,4 +29,22 @@ def to_3nf(df):
     df.drop(df.columns[[0, 1]], axis=1, inplace=True)  # Выпиливаю повторяющуюся нумерацию
 
 
+def insert_row(df, company_name, location, detail, status_rocket, rocket, status_mission, year, month, dow, date, time_in_min, country):
+    df = df.append({'Company Name': company_name,
+                    'Location': location,
+                    'Detail': detail,
+                    'Status Rocket': status_rocket,
+                    ' Rocket': rocket,
+                    'Status Mission': status_mission,
+                    'Year': year,  # TODO: при вводе чисел пользователем проверять формат
+                    'Month': month,
+                    'Day of Week': dow,
+                    'Date': date,
+                    'Time in Min': time_in_min,
+                    'Country': country},
+                   ignore_index=True)
+    return df
 
+
+def remove_row(df, num):  # с нуля
+    df.drop([num], axis=0, inplace=True)
