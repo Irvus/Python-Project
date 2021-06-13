@@ -26,13 +26,23 @@ def pt2(df):
     return pt2
 
 
+def pt3(df):
+    pt3 = pd.pivot_table(df,
+                         index=['Year'],
+                         values=['Date'],
+                         columns=[' Rocket'],
+                         aggfunc=[len],
+                         fill_value=0)
+    return pt3
+
+
 space_missions = reading(PWD)
 to_3nf(space_missions)
 space_missions.info()
 
 pt1 = pt_country_status_mission(space_missions)  # страна / статус миссий
 pt2 = pt2(space_missions)  # страна - статус миссий / год
-
+pt3 = pt3(space_missions)  # год - стоимость в очень странном виде
 
 export_to_csv(space_missions, 'space_missions')  # переделать на кнопку в UI
 
