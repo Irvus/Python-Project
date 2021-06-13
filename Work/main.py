@@ -1,10 +1,13 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import openpyxl
 
 from Scripts.config import *
 from Library.lib import *
 
+def save_table(table, title):
+    table.to_excel('Data/' + title + '.xlsx')
 
 def pt_country_status_mission(df):  # вроде бы оно работает, погоняй
     '''Функция создает сводную таблицу
@@ -80,17 +83,19 @@ def year_success(df):
 
 def price_year(df):
     '''Функция строит категоризированную диаграмму рассеивания
-    зависимости средней стоимости от года (за 21 век)
+    зависимости средней стоимости от года (за 10-e года 21 века)
     Автор Маркова Э.'''
     x = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
     y = [152, 105, 122, 90, 103, 92, 76, 69, 65, 59]
     fig3, ax3 = plt.subplots()
     ax3.scatter(x, y)
-    plt.title('Year/price')
+    plt.title('Year/average price')
     fig3.savefig('Graphics/price_year.png')
     plt.show()
 
 def number_year():
+    '''Функция строит столбчатую диаграмму зависимости количества запусков от года
+    Автор Маркова Э.'''
     df = pd.read_csv("Data/Space_Corrected.csv")
     df['Year'] = df['Datum'].apply(lambda x: str(x).split(', ')[-1])
     df['Launch Date_year'] = df['Datum'].apply(lambda x:int(str(x).split()[3]))
@@ -106,14 +111,17 @@ to_3nf(space_missions)
 space_missions.info()
 
 pt1 = pt_country_status_mission(space_missions)  # страна / статус миссий
+save_table(pt1, 'Сводная таблица 1')
 pt2 = pt2(space_missions)  # страна - статус миссий / год
+save_table(pt2, 'Сводная таблица 2')
 pt3 = pt3(space_missions)  # год - стоимость в очень странном виде
+save_table(pt3, 'Сводная таблица 3')
 
 export_to_csv(space_missions, 'space_missions')  # !!!!!!!переделать на кнопку в UI!!!!
-export_to_csv(pt1, "Сводная таблица 1")
-export_to_csv(pt2, "Сводная таблица 2")
-export_to_csv(pt3, "Сводная таблица 3")
+save_table(space_missions, 'space_missions')
+'''
 outcomesForRussia(space_missions)
 year_success(space_missions)
 price_year(space_missions)
 number_year()
+'''
