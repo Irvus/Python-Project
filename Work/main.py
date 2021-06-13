@@ -55,8 +55,8 @@ def outcomesForRussia(df):
         shadow=False, radius=20, startangle=90)
     ax1.legend(title = 'Outcomes for Russia:')
     ax1.axis('equal')
-    plt.show()
     fig1.savefig('Graphics/outcomesForRussia.png')
+    plt.show()
 
 def year_success(df):
     '''Функция строит категоризированную диаграмму зависимости успешных
@@ -77,6 +77,17 @@ def year_success(df):
     plt.savefig('Graphics/year_success.png')
     plt.show()
 
+def price_year(df):
+    '''Функция строит категоризированную диаграмму рассеивания
+    зависимости средней стоимости от года (за 21 век)
+    Автор Маркова Э.'''
+    x = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
+    y = [152, 105, 122, 90, 103, 92, 76, 69, 65, 59]
+    fig3, ax3 = plt.subplots()
+    ax3.scatter(x, y)
+    fig3.savefig('Graphics/price_year.png')
+    plt.show()
+
 space_missions = reading(PWD)
 to_3nf(space_missions)
 space_missions.info()
@@ -89,5 +100,6 @@ export_to_csv(space_missions, 'space_missions')  # !!!!!!!переделать �
 export_to_csv(pt1, "Сводная таблица 1")
 export_to_csv(pt2, "Сводная таблица 2")
 export_to_csv(pt3, "Сводная таблица 3")
-#outcomesForRussia(space_missions)
+outcomesForRussia(space_missions)
 year_success(space_missions)
+price_year(space_missions)
