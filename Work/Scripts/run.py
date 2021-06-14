@@ -6,7 +6,7 @@ from Scripts.config import *
 space_missions = reading(path_to_csv)
 to_3nf(space_missions)
 space_missions.info()
-year_success(space_missions, 'True')
+
 
 '''
 pt1 = pt_country_status_mission(space_missions)  # страна / статус миссий

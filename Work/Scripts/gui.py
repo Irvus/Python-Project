@@ -34,20 +34,67 @@ def graphs():
     lbl1 = Label(window, text = 'Зависимость успешных запусков от неуспешных')
     lbl1.place(x=150, y=40)
     btn1 = Button(window, text='Построить', command=show_gr1, width=30)
-    btn1.place(x = 50, y = 60)
+    btn1.place(x = 50, y = 65)
     btn2 = Button(window, text = 'Сохранить', command = save_gr1, width = 30)
+    btn2.place(x=300, y=65)
+    lbl2 = Label(window, text='Зависимость успешных запусков от года')
+    lbl2.place(x=165, y=120)
+    btn3 = Button(window, text='Построить', command=show_gr2, width=30)
+    btn3.place(x=50, y=145)
+    btn4 = Button(window, text='Сохранить', command=save_gr2, width=30)
+    btn4.place(x=300, y=145)
+    lbl3 = Label(window, text='Зависимость средней стоимости запуска от года')
+    lbl3.place(x=165, y=200)
+    btn5 = Button(window, text='Построить', command=show_gr3, width=30)
+    btn5.place(x=50, y=225)
+    btn6 = Button(window, text='Сохранить', command=save_gr3, width=30)
+    btn6.place(x=300, y=225)
+    lbl4 = Label(window, text='Зависимость количества запусков от года')
+    lbl4.place(x=165, y=280)
+    btn7 = Button(window, text='Построить', command=show_gr4, width=30)
+    btn7.place(x=50, y=305)
+    btn8 = Button(window, text='Сохранить', command=save_gr4, width=30)
+    btn8.place(x=300, y=305)
     window.geometry('600x500')
     window.mainloop()
 
 def save_pt1():
     pt1 = pt_country_status_mission(space_missions)  # страна / статус миссий
     save_table(pt1, 'Сводная таблица 1')
-    messagebox.showinfo('Сделано!', 'Вы можете открыть сводную таблицу в формате xlsx в папке Output')
+    messagebox.showinfo('Сделано!', 'Вы можете открыть сводную таблицу в формате xlsx '
+                                    'в папке Output в файле под названием Сводная таблица 1')
 
 def save_gr1():
-    year_success(space_missions, 'True')
+    outcomesForRussia(space_missions, 'True')
+    messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
+                                    'в файле под названием Outcomes for Russia.png')
 
 def show_gr1():
+    outcomesForRussia(space_missions, 'False')
+
+def save_gr2():
+    year_success(space_missions, 'True')
+    messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
+                                    'в файле под названием Year and success.png')
+
+def show_gr2():
     year_success(space_missions, 'False')
+
+def save_gr3():
+    price_year(space_missions, 'True')
+    messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
+                                    'в файле под названием Price and year.png')
+
+def show_gr3():
+    price_year(space_missions, 'False')
+
+def save_gr4():
+    number_year('True')
+    messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
+                                    'в файле под названием Launches per year.png')
+
+def show_gr4():
+    number_year('False')
+
 
 mainWindow()

@@ -46,7 +46,7 @@ def pt3(df):
     return pt3
 
 
-def outcomesForRussia(df):
+def outcomesForRussia(df, save):
     '''Функция создает круговой график, показывающий соотношение
     успешных запусков к неуспешным для России, на основе сводной таблицы
     Автор: Маркова Э.'''
@@ -59,8 +59,10 @@ def outcomesForRussia(df):
         shadow=False, radius=20, startangle=90)
     ax1.legend(title = 'Outcomes for Russia:')
     ax1.axis('equal')
-    fig1.savefig(path_graph + '/outcomesForRussia.png')
-    plt.show()
+    if save == 'True':
+        fig1.savefig(path_graph + '/Outcomes for Russia.png')
+    if save == 'False':
+        plt.show()
 
 def year_success(df, save):
     '''Функция строит категоризированную диаграмму зависимости успешных
@@ -75,16 +77,16 @@ def year_success(df, save):
             1969, 1970, 1971, 1972, 1973, 1974, 1975)
     number = [4, 7, 7, 13, 33, 37, 40, 52, 54, 56, 60, 63, 64, 71]
 
-    plt.bar(year, number, align='center')  # A bar chart
+    plt.bar(year, number, align='center')
     plt.xlabel('Year')
     plt.ylabel('Number')
     plt.title('Year/successful missions')
     if save == 'True':
-        plt.savefig(path_graph + '/year_success.png')
+        plt.savefig(path_graph + '/Year and success.png')
     if save == 'False':
         plt.show()
 
-def price_year(df):
+def price_year(df, save):
     '''Функция строит категоризированную диаграмму рассеивания
     зависимости средней стоимости от года (за 10-e года 21 века)
     Автор Маркова Э.'''
@@ -93,10 +95,12 @@ def price_year(df):
     fig3, ax3 = plt.subplots()
     ax3.scatter(x, y)
     plt.title('Year/average price')
-    fig3.savefig(path_graph + '/price_year.png')
-    plt.show()
+    if save == 'True':
+        fig3.savefig(path_graph + '/Price and year.png')
+    if save == 'False':
+        plt.show()
 
-def number_year():
+def number_year(save):
     '''Функция строит столбчатую диаграмму зависимости количества запусков от года
     Автор Маркова Э.'''
     df = pd.read_csv(path_to_csv)
@@ -106,5 +110,8 @@ def number_year():
     df['Launch Date_year'].value_counts().plot(kind='bar')
     plt.xticks(rotation=90)
     plt.title('Number of launches per year')
-    fig4.savefig(path_graph + '/number_year.png')
-    plt.show()
+    if save == 'True':
+        fig4.savefig(path_graph + '/Launches per year.png')
+    if save == 'False':
+        plt.show()
+
