@@ -199,6 +199,10 @@ def show_gr4():
 
 
 def data_base():
+    '''Функция выводит таблицу
+        Входные данные:нет
+        Выходные данные:нет
+        Автор: Тарасенко И..'''
     df = reading(path_to_new_csv)
     df.drop(df.columns[[0, 1]], axis=1, inplace=True)
     tree = ttk.Treeview()

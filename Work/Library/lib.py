@@ -7,17 +7,26 @@ from Scripts.config import *
 
 
 def reading(pwd):
-    '''Чтение базы данных'''
+    '''Чтение базы данных
+    Входные данные: строка
+    Выходные данные: датафрейм
+    Автор: Тарасенко И.
+    '''
     return pd.read_csv(pwd)
 
 
 def export_to_csv(df, title):
-    '''Экспорт базы данных'''
+    '''Входные данные: датафрейм, строка
+    Выходные данные: нет
+    Автор: Тарасенко И.
+    '''
     df.to_csv(path_or_buf=(path + '/' + title + '.csv'))
 
 
 def to_3nf(df):
     '''Приведение сводной таблицы к третьей нормальной форме
+    Входные данные: датафрейм
+    Выходные данные: нет
     Автор: Тарасенко И.'''
     df['Year'] = df['Datum'].apply(lambda x: int(str(x).split()[3]))  # выцепляю интовый год
     df['Month'] = df['Datum'].apply(lambda x: str(x).split()[1])  # выцепляю месяц
@@ -38,6 +47,9 @@ def insert_row(df, company_name, detail, status_rocket, rocket, status_mission, 
                time_in_min, country):
     '''
     добавление строки в базу данных Space Corrected
+    Входные данные: датафрейм, строка, строка, строка, целое число, строка, целое число, строка, строка, строка,
+                    целое число, целое число, строка
+    Выходные данные: датафрейм
     Автор - И. Тарасенко
     '''
     df = df.append({'Company Name': company_name,
@@ -58,6 +70,8 @@ def insert_row(df, company_name, detail, status_rocket, rocket, status_mission, 
 def remove_row(df, num):  # с нуля
     '''
     удаление строки из датафрейма
+    Входные данные: датафрейм, целое число
+    Выходные данные: нет
     Автор - И. Тарасенко
     '''
     df.drop([num], axis=0, inplace=True)
