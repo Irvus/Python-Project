@@ -1,6 +1,8 @@
 import pandas as pd
-from Scripts.config import *
 import matplotlib.pyplot as plt
+import sys
+sys.path.append('../')
+from Scripts.config import *
 
 def reading(pwd):
     '''Чтение базы данных'''
@@ -9,7 +11,7 @@ def reading(pwd):
 
 def export_to_csv(df, title):
     '''Экспорт базы данных'''
-    df.to_csv(path_or_buf=('Data/' + title + '.csv'))
+    df.to_csv(path_or_buf=(path + '/' + title + '.csv'))
 
 def to_3nf(df):
     '''Приведение сводной таблицы к третьей нормальной форме
