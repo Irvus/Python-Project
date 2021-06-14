@@ -9,7 +9,7 @@ from Scripts.gui import *
 space_missions = reading(path_to_csv)
 to_3nf(space_missions)
 space_missions.info()
-main_window(space_missions)
+main_window()
 '''
 pt1 = pt_country_status_mission(space_missions)
 save_table(pt1, 'Сводная таблица 1')

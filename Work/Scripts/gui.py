@@ -13,7 +13,7 @@ from Scripts.config import *
 
 # from Scripts.run import *
 
-def main_window(df):
+def main_window():
     '''Функция создает главное окно приложения
     Входные данные:нет
     Выходные данные:нет
@@ -24,7 +24,7 @@ def main_window(df):
     btn_pt1 = Button(window, text="Скачать сводную таблицу 1", command=save_pt1, width=50)
     btn_pt2 = Button(window, text="Скачать сводную таблицу 2", command=save_pt2, width=50)
     btn_pt3 = Button(window, text="Скачать сводную таблицу 3", command=save_pt3, width=50)
-    btn_pt4 = Button(window, text="База данных", command=data_base(df), width=50)
+    btn_pt4 = Button(window, text="База данных", command=data_base, width=50)
     btn_graph.place(x=180, y=150)
     btn_pt1.place(x=180, y=200)
     btn_pt2.place(x=180, y=250)
@@ -198,8 +198,9 @@ def show_gr4():
     number_year('False')
 
 
-def data_base(df):
+def data_base():
     window = Tk()
+    df = reading(path_to_csv)
     window.title("Ttk Treeview")
     tree = ttk.Treeview()
 
@@ -219,7 +220,7 @@ def data_base(df):
     xsb = ttk.Scrollbar(window, orient=tk.HORIZONTAL, command=tree.xview)
     tree.configure(yscroll=ysb.set, xscroll=xsb.set)
     tree.grid(row=0, column=0)
-
+    window.mainloop()
 
 def print_selection(tree, event):
     for selection in tree.selection():
