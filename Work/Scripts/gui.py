@@ -137,7 +137,7 @@ def show_gr1():
     Выходные данные:нет
     Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
-    outcomesForRussia(space_missions, 'False')
+    outcomes_for_russia(space_missions, 'False')
 
 
 def save_gr2():
