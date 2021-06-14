@@ -1,5 +1,7 @@
 from tkinter import *
-from tkinter.ttk import Combobox
+import tkinter.ttk as ttk
+import csv
+#from tkinter.ttk import Combobox
 from tkinter import messagebox
 import sys
 sys.path.append('../')
@@ -8,6 +10,10 @@ from Scripts.config import *
 #from Scripts.run import *
 
 def mainWindow():
+    '''Функция создает главное окно приложения
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.'''
     window = Tk()
     window.title("Python analysis")
     btn_graph = Button(window, text="Графики", command=graphs, width = 30)
@@ -24,6 +30,10 @@ def mainWindow():
 
 
 def graphs():
+    '''Функция создает окно с графиками
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.'''
     window = Tk()
     window.title("Graphics")
     lbl = Label(window, text="Графики", font=("Arial Bold", 15))
@@ -63,6 +73,10 @@ def graphs():
     window.mainloop()
 
 def save_pt1():
+    '''Функция сохраняет сводную таблицу 1
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
     to_3nf(space_missions)
     space_missions.info()
@@ -72,6 +86,10 @@ def save_pt1():
                                     'в папке Output в файле под названием Сводная таблица 1')
 
 def save_pt2():
+    '''Функция сохраняет сводную таблицу 2
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
     to_3nf(space_missions)
     space_missions.info()
@@ -81,6 +99,10 @@ def save_pt2():
                                     'в папке Output в файле под названием Сводная таблица 2')
 
 def save_pt3():
+    '''Функция сохраняет сводную таблицу 3
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
     to_3nf(space_missions)
     space_missions.info()
@@ -90,43 +112,98 @@ def save_pt3():
                                     'в папке Output в файле под названием Сводная таблица 3')
 
 def save_gr1():
+    '''Функция сохраняет график зависимости успешных запусков от неуспешных
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
     outcomesForRussia(space_missions, 'True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Outcomes for Russia.png')
 
 def show_gr1():
+    '''Функция выводит график зависимости успешных запусков от неуспешных
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
     outcomesForRussia(space_missions, 'False')
 
 def save_gr2():
+    '''Функция сохраняет график зависимости успешных запусков от года
+        Входные данные:нет
+        Выходные данные:нет
+        Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
     year_success(space_missions, 'True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Year and success.png')
 
 def show_gr2():
+    '''Функция выводит график зависимости успешных запусков от года
+            Входные данные:нет
+            Выходные данные:нет
+            Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
     year_success(space_missions, 'False')
 
 def save_gr3():
+    '''Функция сохраняет график зависимости средней стоимости запуска от года
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
     price_year(space_missions, 'True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Price and year.png')
 
 def show_gr3():
+    '''Функция выводит график зависимости средней стоимости запуска от года
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
     price_year(space_missions, 'False')
 
 def save_gr4():
-    space_missions = reading(path_to_csv)
+    '''Функция сохраняет график зависимости количества запусков от года
+        Входные данные:нет
+        Выходные данные:нет
+        Автор: Маркова Э.'''
     number_year('True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Launches per year.png')
 
 def show_gr4():
-    space_missions = reading(path_to_csv)
+    '''Функция выводит график зависимости количества запусков от года
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.'''
     number_year('False')
 
+def data_base():
+    window = Tk()
+    window.title("Ttk Treeview")
 
+    columns = ("#1", "#2", "#3")
+    tree = ttk.Treeview(self, show="headings", columns=columns)
+    tree.heading("#1", text="Фамилия")
+    tree.heading("#2", text="Имя")
+    tree.heading("#3", text="Почта")
+    ysb = ttk.Scrollbar(window, orient=tk.VERTICAL, command=tree.yview)
+    tree.configure(yscroll=ysb.set)
+    with open(path_to_csv, newline="") as f:
+        for contact in csv.reader(f):
+            tree.insert("", tk.END, values=contact)
+    tree.bind("<<TreeviewSelect>>", print_selection)
+    tree.grid(row=0, column=0)
+    ysb.grid(row=0, column=1, sticky=tk.N + tk.S)
+    rowconfigure(0, weight=1)
+    columnconfigure(0, weight=1)
+
+def print_selection(tree, event):
+    for selection in tree.selection():
+        item = tree.item(selection)
+        last_name, first_name, email = item["values"][0:3]
+        text = "Выбор: {}, {} <{}>"
+        print(text.format(last_name, first_name, email))
