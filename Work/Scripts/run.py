@@ -25,7 +25,7 @@ save_table(pt3, 'Сводная таблица 3')
 
 export_to_csv(space_missions, 'space_missions')  # !!!!!!!переделать на кнопку в UI!!!!
 save_table(space_missions, 'space_missions')
-outcomesForRussia(space_missions)
+outcomes_for_russia(space_missions)
 price_year(space_missions)
 number_year()
 '''

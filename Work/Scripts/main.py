@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import sys
 
 sys.path.append('../')
-
 from Library.lib import *
 
 
@@ -47,11 +46,11 @@ def pt_3(df):
     return pt3
 
 
-def outcomesForRussia(df, save):
+def outcomes_for_russia(df, save):
     '''Функция создает круговой график, показывающий соотношение
     успешных запусков к неуспешным для России, на основе сводной таблицы
     Автор: Маркова Э.'''
-    # name = 'outcomesForRussia.png' # !!!!!!потом надо сделать так, чтобы имя пользователь вводил!!!!!!!!!
+    # name = 'outcomes_for_russia.png' # !!!!!!потом надо сделать так, чтобы имя пользователь вводил!!!!!!!!!
     labels = 'Faliure', 'Partial faliure', 'Success'
     sizes = [62, 30, 1303]
     explode = (0.5, 0.5, 0.5)
