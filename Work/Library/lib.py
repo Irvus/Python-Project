@@ -41,7 +41,6 @@ def insert_row(df, company_name, location, detail, status_rocket, rocket, status
     Автор - И. Тарасенко
     '''
     df = df.append({'Company Name': company_name,
-                    'Location': location,
                     'Detail': detail,
                     'Status Rocket': status_rocket,
                     ' Rocket': rocket,
