@@ -12,7 +12,7 @@ from Scripts.config import *
 
 # from Scripts.run import *
 
-def mainWindow():
+def main_window():
     '''Функция создает главное окно приложения
     Входные данные:нет
     Выходные данные:нет
