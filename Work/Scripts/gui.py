@@ -199,10 +199,8 @@ def show_gr4():
 
 
 def data_base():
-    window = Tk()
     df = reading(path_to_new_csv)
     df.drop(df.columns[[0, 1]], axis=1, inplace=True)
-    window.title("Ttk Treeview")
     tree = ttk.Treeview()
 
     df_col = df.columns.values.tolist()
@@ -217,11 +215,10 @@ def data_base():
 
     for i in range(counter):
         tree.insert('', i, text=row_labels[i], values=df.iloc[i, :].tolist())
-    ysb = ttk.Scrollbar(window, orient=tk.VERTICAL, command=tree.yview)
-    xsb = ttk.Scrollbar(window, orient=tk.HORIZONTAL, command=tree.xview)
+    ysb = ttk.Scrollbar(orient=tk.VERTICAL, command=tree.yview)
+    xsb = ttk.Scrollbar(orient=tk.HORIZONTAL, command=tree.xview)
     tree.configure(yscroll=ysb.set, xscroll=xsb.set)
     tree.grid(row=0, column=0)
-    window.mainloop()
 
 
 def print_selection(tree, event):
