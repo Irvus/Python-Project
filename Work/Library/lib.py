@@ -31,6 +31,10 @@ def to_3nf(df):
 
 
 def insert_row(df, company_name, location, detail, status_rocket, rocket, status_mission, year, month, dow, date, time_in_min, country):
+    '''
+    добавление строки в базу данных Space Corrected
+    Автор - И. Тарасенко
+    '''
     df = df.append({'Company Name': company_name,
                     'Location': location,
                     'Detail': detail,
@@ -48,4 +52,8 @@ def insert_row(df, company_name, location, detail, status_rocket, rocket, status
 
 
 def remove_row(df, num):  # с нуля
+    '''
+    удаление строки из датафрейма
+    Автор - И. Тарасенко
+    '''
     df.drop([num], axis=0, inplace=True)
