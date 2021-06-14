@@ -1,13 +1,16 @@
 from tkinter import *
 import tkinter.ttk as ttk
 import csv
-#from tkinter.ttk import Combobox
 from tkinter import messagebox
 import sys
+
 sys.path.append('../')
+
 from Scripts.main import *
 from Scripts.config import *
-#from Scripts.run import *
+
+
+# from Scripts.run import *
 
 def mainWindow():
     '''Функция создает главное окно приложения
@@ -16,19 +19,18 @@ def mainWindow():
     Автор: Маркова Э.'''
     window = Tk()
     window.title("Python analysis")
-    btn_graph = Button(window, text="Графики", command=graphs, width = 50)
-    btn_pt1 = Button(window, text="Скачать сводную таблицу 1", command = save_pt1, width = 50)
+    btn_graph = Button(window, text="Графики", command=graphs, width=50)
+    btn_pt1 = Button(window, text="Скачать сводную таблицу 1", command=save_pt1, width=50)
     btn_pt2 = Button(window, text="Скачать сводную таблицу 2", command=save_pt2, width=50)
     btn_pt3 = Button(window, text="Скачать сводную таблицу 3", command=save_pt3, width=50)
     btn_pt4 = Button(window, text="База данных", command=data_base, width=50)
     btn_graph.place(x=180, y=150)
-    btn_pt1.place(x =180, y = 200)
+    btn_pt1.place(x=180, y=200)
     btn_pt2.place(x=180, y=250)
     btn_pt3.place(x=180, y=300)
     btn_pt4.place(x=180, y=350)
     window.geometry('700x600')
     window.mainloop()
-
 
 
 def graphs():
@@ -39,19 +41,19 @@ def graphs():
     window = Tk()
     window.title("Graphics")
     lbl = Label(window, text="Графики", font=("Arial Bold", 15))
-    lbl.place(x = 260, y = 5)
-    #combo_left = Combobox(window)
-    #combo_right = Combobox(window)
-    #combo_left['values'] = ('Успешные запуски', 'Стоимость', 'Количество запусков')
-    #combo_right['values'] = ('Неуспешные запуски', 'Год')
-    #combo_left.place(x= 125, y = 40)
-    #combo_right.place(x=300, y=40)
-    #btn = Button(window, text='Построить', width=30)
-    lbl1 = Label(window, text = 'Зависимость успешных запусков от неуспешных')
+    lbl.place(x=260, y=5)
+    # combo_left = Combobox(window)
+    # combo_right = Combobox(window)
+    # combo_left['values'] = ('Успешные запуски', 'Стоимость', 'Количество запусков')
+    # combo_right['values'] = ('Неуспешные запуски', 'Год')
+    # combo_left.place(x= 125, y = 40)
+    # combo_right.place(x=300, y=40)
+    # btn = Button(window, text='Построить', width=30)
+    lbl1 = Label(window, text='Зависимость успешных запусков от неуспешных')
     lbl1.place(x=150, y=40)
     btn1 = Button(window, text='Построить', command=show_gr1, width=30)
-    btn1.place(x = 50, y = 65)
-    btn2 = Button(window, text = 'Сохранить', command = save_gr1, width = 30)
+    btn1.place(x=50, y=65)
+    btn2 = Button(window, text='Сохранить', command=save_gr1, width=30)
     btn2.place(x=300, y=65)
     lbl2 = Label(window, text='Зависимость успешных запусков от года')
     lbl2.place(x=165, y=120)
@@ -74,6 +76,7 @@ def graphs():
     window.geometry('600x500')
     window.mainloop()
 
+
 def save_pt1():
     '''Функция сохраняет сводную таблицу 1
     Входные данные:нет
@@ -86,6 +89,7 @@ def save_pt1():
     save_table(pt1, 'Сводная таблица 1')
     messagebox.showinfo('Сделано!', 'Вы можете открыть сводную таблицу в формате xlsx '
                                     'в папке Output в файле под названием Сводная таблица 1')
+
 
 def save_pt2():
     '''Функция сохраняет сводную таблицу 2
@@ -100,6 +104,7 @@ def save_pt2():
     messagebox.showinfo('Сделано!', 'Вы можете открыть сводную таблицу в формате xlsx '
                                     'в папке Output в файле под названием Сводная таблица 2')
 
+
 def save_pt3():
     '''Функция сохраняет сводную таблицу 3
     Входные данные:нет
@@ -113,6 +118,7 @@ def save_pt3():
     messagebox.showinfo('Сделано!', 'Вы можете открыть сводную таблицу в формате xlsx '
                                     'в папке Output в файле под названием Сводная таблица 3')
 
+
 def save_gr1():
     '''Функция сохраняет график зависимости успешных запусков от неуспешных
     Входные данные:нет
@@ -123,6 +129,7 @@ def save_gr1():
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Outcomes for Russia.png')
 
+
 def show_gr1():
     '''Функция выводит график зависимости успешных запусков от неуспешных
     Входные данные:нет
@@ -130,6 +137,7 @@ def show_gr1():
     Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
     outcomesForRussia(space_missions, 'False')
+
 
 def save_gr2():
     '''Функция сохраняет график зависимости успешных запусков от года
@@ -141,6 +149,7 @@ def save_gr2():
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Year and success.png')
 
+
 def show_gr2():
     '''Функция выводит график зависимости успешных запусков от года
             Входные данные:нет
@@ -148,6 +157,7 @@ def show_gr2():
             Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
     year_success(space_missions, 'False')
+
 
 def save_gr3():
     '''Функция сохраняет график зависимости средней стоимости запуска от года
@@ -159,6 +169,7 @@ def save_gr3():
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Price and year.png')
 
+
 def show_gr3():
     '''Функция выводит график зависимости средней стоимости запуска от года
     Входные данные:нет
@@ -166,6 +177,7 @@ def show_gr3():
     Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
     price_year(space_missions, 'False')
+
 
 def save_gr4():
     '''Функция сохраняет график зависимости количества запусков от года
@@ -176,12 +188,14 @@ def save_gr4():
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Launches per year.png')
 
+
 def show_gr4():
     '''Функция выводит график зависимости количества запусков от года
     Входные данные:нет
     Выходные данные:нет
     Автор: Маркова Э.'''
     number_year('False')
+
 
 def data_base():
     window = Tk()
@@ -204,10 +218,10 @@ def data_base():
     columnconfigure(0, weight=1)
     window.mainloop()
 
+
 def print_selection(tree, event):
     for selection in tree.selection():
         item = tree.item(selection)
         last_name, first_name, email = item["values"][0:3]
         text = "Выбор: {}, {} <{}>"
         print(text.format(last_name, first_name, email))
-

@@ -1,8 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import sys
+
 sys.path.append('../')
 from Scripts.config import *
+
 
 def reading(pwd):
     '''Чтение базы данных'''
@@ -13,6 +15,7 @@ def export_to_csv(df, title):
     '''Экспорт базы данных'''
     df.to_csv(path_or_buf=(path + '/' + title + '.csv'))
 
+
 def to_3nf(df):
     '''Приведение сводной таблицы к третьей нормальной форме
     Автор: Тарасенко И.'''
@@ -22,7 +25,7 @@ def to_3nf(df):
     df['Date'] = df['Datum'].apply(lambda x: int(str(x).split()[2].replace(',', '')))  # число
     df['Time in Min'] = df['Datum'].apply(lambda x: int(int(str(x).split()[4].split(':')[0]) * 60 +
                                                         int(str(x).split()[4].split(':')[1]))
-                                                    if (len(str(x).split()) > 4) else None)  # Время в минутах
+    if (len(str(x).split()) > 4) else None)  # Время в минутах
     df.drop('Datum', axis=1, inplace=True)
 
     df['Country'] = df['Location'].apply(lambda x: str(x).split(', ')[-1])  # заполняю страны как есть
@@ -30,7 +33,8 @@ def to_3nf(df):
     df.drop(df.columns[[0, 1]], axis=1, inplace=True)  # Выпиливаю повторяющуюся нумерацию
 
 
-def insert_row(df, company_name, location, detail, status_rocket, rocket, status_mission, year, month, dow, date, time_in_min, country):
+def insert_row(df, company_name, location, detail, status_rocket, rocket, status_mission, year, month, dow, date,
+               time_in_min, country):
     '''
     добавление строки в базу данных Space Corrected
     Автор - И. Тарасенко

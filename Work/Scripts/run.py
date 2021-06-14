@@ -1,5 +1,7 @@
 import sys
+
 sys.path.append('../')
+
 from Scripts.main import *
 from Scripts.config import *
 from Scripts.gui import *

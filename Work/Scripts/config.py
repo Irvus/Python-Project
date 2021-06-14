@@ -1,5 +1,5 @@
-
 import os
+
 path = os.path.abspath(os.path.join(os.getcwd(), '..', 'Data'))
 path_to_csv = path + '/Space_Corrected.csv'
 path_to_new_csv = path + '/space_missions.csv'
