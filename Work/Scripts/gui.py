@@ -5,15 +5,19 @@ import sys
 sys.path.append('../')
 from Scripts.main import *
 from Scripts.config import *
-from Scripts.run import *
+#from Scripts.run import *
 
 def mainWindow():
     window = Tk()
     window.title("Python analysis")
     btn_graph = Button(window, text="Графики", command=graphs, width = 30)
     btn_pt1 = Button(window, text="Скачать сводную таблицу 1", command = save_pt1, width = 30)
+    btn_pt2 = Button(window, text="Скачать сводную таблицу 2", command=save_pt2, width=30)
+    btn_pt3 = Button(window, text="Скачать сводную таблицу 3", command=save_pt3, width=30)
     btn_graph.place(x=250, y=200)
     btn_pt1.place(x = 250, y = 250)
+    btn_pt2.place(x=250, y=300)
+    btn_pt3.place(x=250, y=350)
     window.geometry('700x600')
     window.mainloop()
 
@@ -59,42 +63,70 @@ def graphs():
     window.mainloop()
 
 def save_pt1():
-    pt1 = pt_country_status_mission(space_missions)  # страна / статус миссий
+    space_missions = reading(path_to_csv)
+    to_3nf(space_missions)
+    space_missions.info()
+    pt1 = pt_country_status_mission(space_missions)
     save_table(pt1, 'Сводная таблица 1')
     messagebox.showinfo('Сделано!', 'Вы можете открыть сводную таблицу в формате xlsx '
                                     'в папке Output в файле под названием Сводная таблица 1')
 
+def save_pt2():
+    space_missions = reading(path_to_csv)
+    to_3nf(space_missions)
+    space_missions.info()
+    pt2 = pt_2(space_missions)
+    save_table(pt2, 'Сводная таблица 2')
+    messagebox.showinfo('Сделано!', 'Вы можете открыть сводную таблицу в формате xlsx '
+                                    'в папке Output в файле под названием Сводная таблица 2')
+
+def save_pt3():
+    space_missions = reading(path_to_csv)
+    to_3nf(space_missions)
+    space_missions.info()
+    pt3 = pt_3(space_missions)
+    save_table(pt3, 'Сводная таблица 3')
+    messagebox.showinfo('Сделано!', 'Вы можете открыть сводную таблицу в формате xlsx '
+                                    'в папке Output в файле под названием Сводная таблица 3')
+
 def save_gr1():
+    space_missions = reading(path_to_csv)
     outcomesForRussia(space_missions, 'True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Outcomes for Russia.png')
 
 def show_gr1():
+    space_missions = reading(path_to_csv)
     outcomesForRussia(space_missions, 'False')
 
 def save_gr2():
+    space_missions = reading(path_to_csv)
     year_success(space_missions, 'True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Year and success.png')
 
 def show_gr2():
+    space_missions = reading(path_to_csv)
     year_success(space_missions, 'False')
 
 def save_gr3():
+    space_missions = reading(path_to_csv)
     price_year(space_missions, 'True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Price and year.png')
 
 def show_gr3():
+    space_missions = reading(path_to_csv)
     price_year(space_missions, 'False')
 
 def save_gr4():
+    space_missions = reading(path_to_csv)
     number_year('True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Launches per year.png')
 
 def show_gr4():
+    space_missions = reading(path_to_csv)
     number_year('False')
 
 
-mainWindow()
