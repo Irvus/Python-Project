@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter as tk
 import tkinter.ttk as ttk
 import csv
 from tkinter import messagebox
@@ -23,7 +24,7 @@ def main_window(df):
     btn_pt1 = Button(window, text="Скачать сводную таблицу 1", command=save_pt1, width=50)
     btn_pt2 = Button(window, text="Скачать сводную таблицу 2", command=save_pt2, width=50)
     btn_pt3 = Button(window, text="Скачать сводную таблицу 3", command=save_pt3, width=50)
-    btn_pt4 = Button(window, text="База данных", command=data_base, width=50)
+    btn_pt4 = Button(window, text="База данных", command=data_base(df), width=50)
     btn_graph.place(x=180, y=150)
     btn_pt1.place(x=180, y=200)
     btn_pt2.place(x=180, y=250)
@@ -197,26 +198,27 @@ def show_gr4():
     number_year('False')
 
 
-def data_base():
+def data_base(df):
     window = Tk()
     window.title("Ttk Treeview")
+    tree = ttk.Treeview()
 
-    columns = ("#1", "#2", "#3")
-    tree = ttk.Treeview(self, show="headings", columns=columns)
-    tree.heading("#1", text="Фамилия")
-    tree.heading("#2", text="Имя")
-    tree.heading("#3", text="Почта")
+    df_col = df.columns.values.tolist()
+    tree["columns"] = df_col
+    counter = len(df)
+
+    for x in range(len(df_col)):
+        tree.column(df_col[x], width=100)
+        tree.heading(df_col[x], text=df_col[x])
+
+    row_labels = df.index.tolist()
+
+    for i in range(counter):
+        tree.insert('', i, text=row_labels[i], values=df.iloc[i, :].tolist())
     ysb = ttk.Scrollbar(window, orient=tk.VERTICAL, command=tree.yview)
-    tree.configure(yscroll=ysb.set)
-    with open(path_to_csv, newline="") as f:
-        for contact in csv.reader(f):
-            tree.insert("", tk.END, values=contact)
-    tree.bind("<<TreeviewSelect>>", print_selection)
+    xsb = ttk.Scrollbar(window, orient=tk.HORIZONTAL, command=tree.xview)
+    tree.configure(yscroll=ysb.set, xscroll=xsb.set)
     tree.grid(row=0, column=0)
-    ysb.grid(row=0, column=1, sticky=tk.N + tk.S)
-    rowconfigure(0, weight=1)
-    columnconfigure(0, weight=1)
-    window.mainloop()
 
 
 def print_selection(tree, event):
