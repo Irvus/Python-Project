@@ -34,7 +34,7 @@ def to_3nf(df):
     df.drop(df.columns[[0, 1]], axis=1, inplace=True)  # Выпиливаю повторяющуюся нумерацию
 
 
-def insert_row(df, company_name, location, detail, status_rocket, rocket, status_mission, year, month, dow, date,
+def insert_row(df, company_name, detail, status_rocket, rocket, status_mission, year, month, dow, date,
                time_in_min, country):
     '''
     добавление строки в базу данных Space Corrected
