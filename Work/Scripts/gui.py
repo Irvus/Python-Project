@@ -16,14 +16,16 @@ def mainWindow():
     Автор: Маркова Э.'''
     window = Tk()
     window.title("Python analysis")
-    btn_graph = Button(window, text="Графики", command=graphs, width = 30)
-    btn_pt1 = Button(window, text="Скачать сводную таблицу 1", command = save_pt1, width = 30)
-    btn_pt2 = Button(window, text="Скачать сводную таблицу 2", command=save_pt2, width=30)
-    btn_pt3 = Button(window, text="Скачать сводную таблицу 3", command=save_pt3, width=30)
-    btn_graph.place(x=250, y=200)
-    btn_pt1.place(x = 250, y = 250)
-    btn_pt2.place(x=250, y=300)
-    btn_pt3.place(x=250, y=350)
+    btn_graph = Button(window, text="Графики", command=graphs, width = 50)
+    btn_pt1 = Button(window, text="Скачать сводную таблицу 1", command = save_pt1, width = 50)
+    btn_pt2 = Button(window, text="Скачать сводную таблицу 2", command=save_pt2, width=50)
+    btn_pt3 = Button(window, text="Скачать сводную таблицу 3", command=save_pt3, width=50)
+    btn_pt4 = Button(window, text="База данных", command=data_base, width=50)
+    btn_graph.place(x=180, y=150)
+    btn_pt1.place(x =180, y = 200)
+    btn_pt2.place(x=180, y=250)
+    btn_pt3.place(x=180, y=300)
+    btn_pt4.place(x=180, y=350)
     window.geometry('700x600')
     window.mainloop()
 
@@ -200,6 +202,7 @@ def data_base():
     ysb.grid(row=0, column=1, sticky=tk.N + tk.S)
     rowconfigure(0, weight=1)
     columnconfigure(0, weight=1)
+    window.mainloop()
 
 def print_selection(tree, event):
     for selection in tree.selection():
@@ -207,3 +210,4 @@ def print_selection(tree, event):
         last_name, first_name, email = item["values"][0:3]
         text = "Выбор: {}, {} <{}>"
         print(text.format(last_name, first_name, email))
+
