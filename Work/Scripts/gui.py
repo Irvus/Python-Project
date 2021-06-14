@@ -200,7 +200,8 @@ def show_gr4():
 
 def data_base():
     window = Tk()
-    df = reading(path_to_csv)
+    df = reading(path_to_new_csv)
+    df.drop(df.columns[[0, 1]], axis=1, inplace=True)
     window.title("Ttk Treeview")
     tree = ttk.Treeview()
 
@@ -221,6 +222,7 @@ def data_base():
     tree.configure(yscroll=ysb.set, xscroll=xsb.set)
     tree.grid(row=0, column=0)
     window.mainloop()
+
 
 def print_selection(tree, event):
     for selection in tree.selection():
