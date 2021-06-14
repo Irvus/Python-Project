@@ -8,7 +8,7 @@ sys.path.append('../')
 from Library.lib import *
 
 def save_table(table, title):
-    table.to_excel(path + '/' + title + '.xlsx')
+    table.to_excel(path_out + '/' + title + '.xlsx')
 
 def pt_country_status_mission(df):  # вроде бы оно работает, погоняй
     '''Функция создает сводную таблицу
@@ -62,7 +62,7 @@ def outcomesForRussia(df):
     fig1.savefig(path_graph + '/outcomesForRussia.png')
     plt.show()
 
-def year_success(df):
+def year_success(df, save):
     '''Функция строит категоризированную диаграмму зависимости успешных
     запусков от года
     Автор: Маркова Э.'''
@@ -79,8 +79,10 @@ def year_success(df):
     plt.xlabel('Year')
     plt.ylabel('Number')
     plt.title('Year/successful missions')
-    plt.savefig(path_graph + '/year_success.png')
-    plt.show()
+    if save == 'True':
+        plt.savefig(path_graph + '/year_success.png')
+    if save == 'False':
+        plt.show()
 
 def price_year(df):
     '''Функция строит категоризированную диаграмму рассеивания
