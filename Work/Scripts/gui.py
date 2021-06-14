@@ -215,15 +215,11 @@ def data_base():
 
     for i in range(counter):
         tree.insert('', i, text=row_labels[i], values=df.iloc[i, :].tolist())
+
     ysb = ttk.Scrollbar(orient=tk.VERTICAL, command=tree.yview)
     xsb = ttk.Scrollbar(orient=tk.HORIZONTAL, command=tree.xview)
     tree.configure(yscroll=ysb.set, xscroll=xsb.set)
-    tree.grid(row=0, column=0)
+    ysb.pack(side=tk.RIGHT, fill=tk.Y)
+    xsb.pack(side=tk.TOP, fill=tk.X)
+    tree.pack()
 
-
-def print_selection(tree, event):
-    for selection in tree.selection():
-        item = tree.item(selection)
-        last_name, first_name, email = item["values"][0:3]
-        text = "Выбор: {}, {} <{}>"
-        print(text.format(last_name, first_name, email))
