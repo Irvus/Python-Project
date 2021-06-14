@@ -1,4 +1,3 @@
-import os
 PWD = "Data/Space_Corrected.csv"
 
 import os
