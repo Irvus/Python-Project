@@ -25,11 +25,11 @@ def main_window():
     btn_pt2 = Button(window, text="Скачать сводную таблицу 2", command=save_pt2, width=50)
     btn_pt3 = Button(window, text="Скачать сводную таблицу 3", command=save_pt3, width=50)
     btn_pt4 = Button(window, text="База данных", command=data_base, width=50)
-    btn_graph.place(x=180, y=150)
-    btn_pt1.place(x=180, y=200)
-    btn_pt2.place(x=180, y=250)
-    btn_pt3.place(x=180, y=300)
-    btn_pt4.place(x=180, y=350)
+    btn_graph.place(x=180, y=250)
+    btn_pt1.place(x=180, y=300)
+    btn_pt2.place(x=180, y=350)
+    btn_pt3.place(x=180, y=400)
+    btn_pt4.place(x=180, y=450)
     window.geometry('700x600')
     window.mainloop()
 
@@ -199,9 +199,8 @@ def show_gr4():
 
 
 def data_base():
-    window = Tk()
-    df = reading(path_to_csv)
-    window.title("Ttk Treeview")
+    df = reading(path_to_new_csv)
+    df.drop(df.columns[[0, 1]], axis=1, inplace=True)
     tree = ttk.Treeview()
 
     df_col = df.columns.values.tolist()
@@ -216,15 +215,8 @@ def data_base():
 
     for i in range(counter):
         tree.insert('', i, text=row_labels[i], values=df.iloc[i, :].tolist())
-    ysb = ttk.Scrollbar(window, orient=tk.VERTICAL, command=tree.yview)
-    xsb = ttk.Scrollbar(window, orient=tk.HORIZONTAL, command=tree.xview)
+    ysb = ttk.Scrollbar(orient=tk.VERTICAL, command=tree.yview)
+    xsb = ttk.Scrollbar(orient=tk.HORIZONTAL, command=tree.xview)
     tree.configure(yscroll=ysb.set, xscroll=xsb.set)
     tree.grid(row=0, column=0)
-    window.mainloop()
 
-def print_selection(tree, event):
-    for selection in tree.selection():
-        item = tree.item(selection)
-        last_name, first_name, email = item["values"][0:3]
-        text = "Выбор: {}, {} <{}>"
-        print(text.format(last_name, first_name, email))
