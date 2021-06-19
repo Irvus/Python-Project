@@ -12,31 +12,37 @@ from Scripts.config import *
 
 
 def main_window():
-    '''Функция создает главное окно приложения
+    """
+    Функция создает главное окно приложения
     Входные данные:нет
     Выходные данные:нет
-    Автор: Маркова Э.'''
+    Автор: Маркова Э.
+    """
     window = Tk()
     window.title("Python analysis")
+    lbl = Label(text='Чтобы открыть базу данных нажмите кнопку "Базза данных"')
+    lbl.place(x=190, y=100)
     btn_graph = Button(window, text="Графики", command=graphs, width=50)
     btn_pt1 = Button(window, text="Скачать сводную таблицу 1", command=save_pt1, width=50)
     btn_pt2 = Button(window, text="Скачать сводную таблицу 2", command=save_pt2, width=50)
     btn_pt3 = Button(window, text="Скачать сводную таблицу 3", command=save_pt3, width=50)
     btn_pt4 = Button(window, text="База данных", command=data_base, width=50)
-    btn_graph.place(x=180, y=250)
+    btn_graph.place(x=180, y=450)
     btn_pt1.place(x=180, y=300)
     btn_pt2.place(x=180, y=350)
     btn_pt3.place(x=180, y=400)
-    btn_pt4.place(x=180, y=450)
+    btn_pt4.place(x=180, y=250)
     window.geometry('700x600')
     window.mainloop()
 
 
 def graphs():
-    '''Функция создает окно с графиками
+    """
+    Функция создает окно с графиками
     Входные данные:нет
     Выходные данные:нет
-    Автор: Маркова Э.'''
+    Автор: Маркова Э.
+    """
     window = Tk()
     window.title("Graphics")
     lbl = Label(window, text="Графики", font=("Arial Bold", 15))
@@ -53,8 +59,8 @@ def graphs():
     btn3.place(x=50, y=145)
     btn4 = Button(window, text='Сохранить', command=save_gr2, width=30)
     btn4.place(x=300, y=145)
-    lbl3 = Label(window, text='Зависимость средней стоимости запуска от года')
-    lbl3.place(x=165, y=200)
+    lbl3 = Label(window, text='Зависимость стоимости запуска от года (диаграмма рассеивания)')
+    lbl3.place(x=120, y=200)
     btn5 = Button(window, text='Построить', command=show_gr3, width=30)
     btn5.place(x=50, y=225)
     btn6 = Button(window, text='Сохранить', command=save_gr3, width=30)
@@ -65,15 +71,29 @@ def graphs():
     btn7.place(x=50, y=305)
     btn8 = Button(window, text='Сохранить', command=save_gr4, width=30)
     btn8.place(x=300, y=305)
+    lbl5 = Label(window, text='Зависимость стоимости от года')
+    lbl5.place(x=190, y=360)
+    btn9 = Button(window, text='Построить', command=show_gr5, width=30)
+    btn9.place(x=50, y=385)
+    btn10 = Button(window, text='Сохранить', command=save_gr5, width=30)
+    btn10.place(x=300, y=385)
+    lbl6 = Label(window, text='Зависимость успешных запусков от неуспешных (столбчатая диаграмма)')
+    lbl6.place(x=100, y=440)
+    btn11 = Button(window, text='Построить', command=show_gr5, width=30)
+    btn11.place(x=50, y=465)
+    btn12 = Button(window, text='Сохранить', command=save_gr5, width=30)
+    btn12.place(x=300, y=465)
     window.geometry('600x600')
     window.mainloop()
 
 
 def save_pt1():
-    '''Функция сохраняет сводную таблицу 1
+    """
+    Функция сохраняет сводную таблицу 1
     Входные данные:нет
     Выходные данные:нет
-    Автор: Маркова Э.'''
+    Автор: Маркова Э.
+    """
     space_missions = reading(path_to_csv)
     to_3nf(space_missions)
     space_missions.info()
@@ -84,10 +104,12 @@ def save_pt1():
 
 
 def save_pt2():
-    '''Функция сохраняет сводную таблицу 2
+    """
+    Функция сохраняет сводную таблицу 2
     Входные данные:нет
     Выходные данные:нет
-    Автор: Маркова Э.'''
+    Автор: Маркова Э.
+    """
     space_missions = reading(path_to_csv)
     to_3nf(space_missions)
     space_missions.info()
@@ -98,10 +120,12 @@ def save_pt2():
 
 
 def save_pt3():
-    '''Функция сохраняет сводную таблицу 3
+    """
+    Функция сохраняет сводную таблицу 3
     Входные данные:нет
     Выходные данные:нет
-    Автор: Маркова Э.'''
+    Автор: Маркова Э.
+    """
     space_missions = reading(path_to_csv)
     to_3nf(space_missions)
     space_missions.info()
@@ -112,10 +136,12 @@ def save_pt3():
 
 
 def save_gr1():
-    '''Функция сохраняет график зависимости успешных запусков от неуспешных
+    """
+    Функция сохраняет график зависимости успешных запусков от неуспешных
     Входные данные:нет
     Выходные данные:нет
-    Автор: Маркова Э.'''
+    Автор: Маркова Э.
+    """
     space_missions = reading(path_to_csv)
     outcomes_for_russia('True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
@@ -123,19 +149,23 @@ def save_gr1():
 
 
 def show_gr1():
-    '''Функция выводит график зависимости успешных запусков от неуспешных
+    """
+    Функция выводит график зависимости успешных запусков от неуспешных
     Входные данные:нет
     Выходные данные:нет
-    Автор: Маркова Э.'''
+    Автор: Маркова Э.
+    """
     space_missions = reading(path_to_csv)
     outcomes_for_russia('False')
 
 
 def save_gr2():
-    '''Функция сохраняет график зависимости успешных запусков от года
-        Входные данные:нет
-        Выходные данные:нет
-        Автор: Маркова Э.'''
+    """
+    Функция сохраняет график зависимости успешных запусков от года
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.
+    """
     space_missions = reading(path_to_csv)
     year_success('True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
@@ -143,19 +173,22 @@ def save_gr2():
 
 
 def show_gr2():
-    '''Функция выводит график зависимости успешных запусков от года
-            Входные данные:нет
-            Выходные данные:нет
-            Автор: Маркова Э.'''
-    space_missions = reading(path_to_csv)
+    """
+    Функция выводит график зависимости успешных запусков от года
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.
+    """
     year_success('False')
 
 
 def save_gr3():
-    '''Функция сохраняет график зависимости средней стоимости запуска от года
+    """
+    Функция сохраняет график зависимости средней стоимости запуска от года
     Входные данные:нет
     Выходные данные:нет
-    Автор: Маркова Э.'''
+    Автор: Маркова Э.
+    """
     space_missions = reading(path_to_csv)
     price_year('True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
@@ -163,37 +196,66 @@ def save_gr3():
 
 
 def show_gr3():
-    '''Функция выводит график зависимости средней стоимости запуска от года
+    """
+    Функция выводит график зависимости средней стоимости запуска от года
     Входные данные:нет
     Выходные данные:нет
-    Автор: Маркова Э.'''
-    space_missions = reading(path_to_csv)
+    Автор: Маркова Э.
+    """
     price_year('False')
 
 
 def save_gr4():
-    '''Функция сохраняет график зависимости количества запусков от года
-        Входные данные:нет
-        Выходные данные:нет
-        Автор: Маркова Э.'''
+    """
+    Функция сохраняет график зависимости количества запусков от года
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.
+    """
     number_year('True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Launches per year.png')
 
 
 def show_gr4():
-    '''Функция выводит график зависимости количества запусков от года
+    """
+    Функция выводит график зависимости количества запусков от года
     Входные данные:нет
     Выходные данные:нет
-    Автор: Маркова Э.'''
+    Автор: Маркова Э.
+    """
     number_year('False')
 
 
+def save_gr5():
+    """
+    Функция скачивает график зависимости цены запусков от года
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.
+    """
+    max_min_price('True')
+    messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
+                                    'в файле под названием Max and min price.png')
+
+
+def show_gr5():
+    """
+    Функция выводит график зависимости цены запусков от года
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.
+    """
+    max_min_price('False')
+
+
 def data_base():
-    '''Функция выводит таблицу
-        Входные данные:нет
-        Выходные данные:нет
-        Автор: Тарасенко И..'''
+    """
+    Функция выводит таблицу
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Тарасенко И.
+    """
     df = reading(path_to_new_csv)
     df.drop(df.columns[[0, 1]], axis=1, inplace=True)
     tree = ttk.Treeview()
@@ -217,4 +279,3 @@ def data_base():
     ysb.pack(side=tk.RIGHT, fill=tk.Y)
     xsb.pack(side=tk.TOP, fill=tk.X)
     tree.pack()
-
