@@ -11,8 +11,6 @@ from Scripts.main import *
 from Scripts.config import *
 
 
-# from Scripts.run import *
-
 def main_window():
     '''Функция создает главное окно приложения
     Входные данные:нет
@@ -43,13 +41,6 @@ def graphs():
     window.title("Graphics")
     lbl = Label(window, text="Графики", font=("Arial Bold", 15))
     lbl.place(x=260, y=5)
-    # combo_left = Combobox(window)
-    # combo_right = Combobox(window)
-    # combo_left['values'] = ('Успешные запуски', 'Стоимость', 'Количество запусков')
-    # combo_right['values'] = ('Неуспешные запуски', 'Год')
-    # combo_left.place(x= 125, y = 40)
-    # combo_right.place(x=300, y=40)
-    # btn = Button(window, text='Построить', width=30)
     lbl1 = Label(window, text='Зависимость успешных запусков от неуспешных')
     lbl1.place(x=150, y=40)
     btn1 = Button(window, text='Построить', command=show_gr1, width=30)
@@ -74,7 +65,7 @@ def graphs():
     btn7.place(x=50, y=305)
     btn8 = Button(window, text='Сохранить', command=save_gr4, width=30)
     btn8.place(x=300, y=305)
-    window.geometry('600x500')
+    window.geometry('600x600')
     window.mainloop()
 
 
@@ -126,7 +117,7 @@ def save_gr1():
     Выходные данные:нет
     Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
-    outcomesForRussia(space_missions, 'True')
+    outcomes_for_russia('True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Outcomes for Russia.png')
 
@@ -137,7 +128,7 @@ def show_gr1():
     Выходные данные:нет
     Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
-    outcomes_for_russia(space_missions, 'False')
+    outcomes_for_russia('False')
 
 
 def save_gr2():
@@ -146,7 +137,7 @@ def save_gr2():
         Выходные данные:нет
         Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
-    year_success(space_missions, 'True')
+    year_success('True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Year and success.png')
 
@@ -157,7 +148,7 @@ def show_gr2():
             Выходные данные:нет
             Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
-    year_success(space_missions, 'False')
+    year_success('False')
 
 
 def save_gr3():
@@ -166,7 +157,7 @@ def save_gr3():
     Выходные данные:нет
     Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
-    price_year(space_missions, 'True')
+    price_year('True')
     messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
                                     'в файле под названием Price and year.png')
 
@@ -177,7 +168,7 @@ def show_gr3():
     Выходные данные:нет
     Автор: Маркова Э.'''
     space_missions = reading(path_to_csv)
-    price_year(space_missions, 'False')
+    price_year('False')
 
 
 def save_gr4():

@@ -67,7 +67,7 @@ def insert_row(df, company_name, detail, status_rocket, rocket, status_mission, 
     return df
 
 
-def remove_row(df, num):  # с нуля
+def remove_row(df, num):
     '''
     удаление строки из датафрейма
     Входные данные: датафрейм, целое число
