@@ -24,6 +24,14 @@ def export_to_csv(df, title):
     """
     df.to_csv(path_or_buf=(path + '/' + title + '.csv'))
 
+def save_table(table, title):
+    """
+    Функция сохраняет датафрейм в .xslx
+    Входные данные: датафрейм, строка
+    Выходные данные: нет
+    Автор: Маркова Э.
+    """
+    table.to_excel(path_out + '/' + title + '.xlsx')
 
 def to_3nf(df):
     """
@@ -50,7 +58,7 @@ def to_3nf(df):
 def insert_row(df, company_name, detail, status_rocket, rocket, status_mission, year, month, dow, date,
                time_in_min, country):
     """
-    добавление строки в базу данных Space Corrected
+    Добавление строки в базу данных
     Входные данные: датафрейм, строка, строка, строка, целое число, строка, целое число, строка, строка, строка,
                     целое число, целое число, строка
     Выходные данные: датафрейм

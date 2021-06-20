@@ -5,17 +5,6 @@ import sys
 sys.path.append('../')
 from Library.lib import *
 
-
-def save_table(table, title):
-    """
-    Функция сохраняет датафрейм в .xslx
-    Входные данные: датафрейм, строка
-    Выходные данные: нет
-    Автор: Маркова Э.
-    """
-    table.to_excel(path_out + '/' + title + '.xlsx')
-
-
 def pt_country_status_mission(df):
     """
     Функция создает сводную таблицу 1
