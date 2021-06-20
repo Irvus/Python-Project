@@ -9,7 +9,7 @@ sys.path.append('../')
 
 from Scripts.main import *
 from Scripts.config import *
-
+from Library.lib import *
 
 def main_window():
     """
@@ -297,7 +297,15 @@ def insert():
         detail = txt2.get()
         status_rocket = txt3.get()
         rocket = txt4.get()
-
+        status_mission = txt5.get()
+        year = txt6.get()
+        month = txt7.get()
+        dow = txt8.get()
+        date = txt9.get()
+        time_in_min = txt10.get()
+        country = txt11.get()
+        insert_row(space_missions, company_name, detail, status_rocket, rocket, status_mission, year, month, dow, date,
+                   time_in_min, country)
     window = Tk()
     window.title("Insert")
     lbl = Label(window, text="Рекомендуется вводить данные на английском языке и в соответствии"
