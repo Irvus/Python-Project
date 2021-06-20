@@ -54,36 +54,3 @@ def to_3nf(df):
 
     df.drop(df.columns[[0, 1]], axis=1, inplace=True)  # Выпиливаю повторяющуюся нумерацию
 
-
-def insert_row(df, company_name, detail, status_rocket, rocket, status_mission, year, month, dow, date,
-               time_in_min, country):
-    """
-    Добавление строки в базу данных
-    Входные данные: датафрейм, строка, строка, строка, целое число, строка, целое число, строка, строка, строка,
-                    целое число, целое число, строка
-    Выходные данные: датафрейм
-    Автор - И. Тарасенко
-    """
-    df = df.append({'Company Name': company_name,
-                    'Detail': detail,
-                    'Status Rocket': status_rocket,
-                    ' Rocket': rocket,
-                    'Status Mission': status_mission,
-                    'Year': year,  # TODO: при вводе чисел пользователем проверять формат
-                    'Month': month,
-                    'Day of Week': dow,
-                    'Date': date,
-                    'Time in Min': time_in_min,
-                    'Country': country},
-                   ignore_index=True)
-    return df
-
-
-def remove_row(df, num):
-    """
-    Удаление строки из датафрейма
-    Входные данные: датафрейм, целое число
-    Выходные данные: нет
-    Автор - И. Тарасенко
-    """
-    df.drop([num], axis=0, inplace=True)

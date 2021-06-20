@@ -51,8 +51,16 @@ def main_window():
             for row_id in tree.get_children():
                 row = tree.item(row_id)['values']
                 writer.writerow(row)
+        messagebox.showinfo('Сделано!', 'Вы можете открыть новую базу данных '
+                                        'в папке Output в файле под названием New.csv')
 
     def delete():
+        """
+        Функция удаляет строку из базы данных
+        Входные данные: нет
+        Выходные данные: нет
+        Автор: Маркова Э.
+        """
         item = tree.selection()[0]  ## get selected item
         tree.delete(item)
 
@@ -161,7 +169,7 @@ def main_window():
     btn_pt3 = Button(window, text="Скачать сводную таблицу 3", command=save_pt3, width=50)
     btn1 = Button(window, text="Добавить строку", command=add, width=50)
     btn2 = Button(window, text="Удалить строку", command=delete, width=50)
-    btn3 = Button(window, text="Скачать таблицу", command=save, width=50)
+    btn3 = Button(window, text="Скачать базу данных", command=save, width=50)
     lbl = Label(window, text="Для удаления строки выделите ее и нажмите кнопку 'Удалить строку'")
     btn1.place(x=500, y=500)
     btn2.place(x=500, y=550)
@@ -220,9 +228,9 @@ def graphs():
     btn10.place(x=300, y=385)
     lbl6 = Label(window, text='Зависимость успешных запусков от неуспешных (столбчатая диаграмма)')
     lbl6.place(x=100, y=440)
-    btn11 = Button(window, text='Построить', command=show_gr5, width=30)
+    btn11 = Button(window, text='Построить', command=show_gr6, width=30)
     btn11.place(x=50, y=465)
-    btn12 = Button(window, text='Сохранить', command=save_gr5, width=30)
+    btn12 = Button(window, text='Сохранить', command=save_gr6, width=30)
     btn12.place(x=300, y=465)
     window.geometry('600x600')
     window.mainloop()
@@ -385,20 +393,23 @@ def show_gr5():
     """
     max_min_price('False')
 
-def remove():
+def save_gr6():
     """
-    Функция удаляет строку из базы данных
-    Входные данные: нет
-    Выходные данные: нет
+    Функция скачивает график количества успешных/неуспешных запусков
+    Входные данные:нет
+    Выходные данные:нет
     Автор: Маркова Э.
     """
+    success_failure('True')
+    messagebox.showinfo('Скачано!', 'Вы можете открыть график в папке Graphics '
+                                    'в файле под названием Outcomes.png')
 
-    def clicked():
-        space_missions = reading(path_to_csv)
-        to_3nf(space_missions)
-        remove_row(space_missions)
 
-    window = Tk()
-    window.title("Remove")
-    window.geometry('500x200')
-    window.mainloop()
+def show_gr6():
+    """
+    Функция выводит график количества успешных/неуспешных запусков
+    Входные данные:нет
+    Выходные данные:нет
+    Автор: Маркова Э.
+    """
+    success_failure('False')

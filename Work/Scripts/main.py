@@ -83,8 +83,8 @@ def year_success(save):
     Выходные данные: нет
     Автор: Маркова Э.
     """
-    year = (1962, 1963, 1964, 1965, 1966, 1967, 1968,
-            1969, 1970, 1971, 1972, 1973, 1974, 1975)
+    year = [1962, 1963, 1964, 1965, 1966, 1967, 1968,
+            1969, 1970, 1971, 1972, 1973, 1974, 1975]
     number = [4, 7, 7, 13, 33, 37, 40, 52, 54, 56, 60, 63, 64, 71]
 
     plt.bar(year, number, align='center')
@@ -105,8 +105,6 @@ def price_year(save):
     Выходные данные: нет
     Автор Маркова Э.
     """
-    # x = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
-    # y = [152, 210, 105, 122, 90, 103, 92, 76, 69, 65, 59]
     x = [2010, 2010, 2010, 2010, 2010, 2010, 2010, 2010, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2012, 2012,
          2012,
          2012, 2012, 2012, 2012, 2012, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2014, 2014, 2014, 2014, 2014,
@@ -146,7 +144,7 @@ def number_year(save):
     if save == 'True':
         fig4.savefig(path_graph + '/Launches per year.png')
     if save == 'False':
-        plt.show()
+        fig4.show()
 
 
 def max_min_price(save):
@@ -165,5 +163,24 @@ def max_min_price(save):
     ax.set_title('Year/price')
     if save == 'True':
         fig.savefig(path_graph + '/Max and min price.png')
+    if save == 'False':
+        fig.show()
+
+def success_failure(save):
+    """
+    Функция создает столбчатую диаграмму, показывающую количество
+    успешных/неуспешных запусков, на основе сводной таблицы
+    Входные данные: булева переменная
+    Выходные данные: нет
+    Автор: Маркова Э.
+    """
+    x =['Failure', 'Partial failure', 'Prelaunch failure', 'Success']
+    y = [62, 30, 0, 1303]
+    plt.bar(x, y)
+    plt.xlabel('Outcome')
+    plt.ylabel('Number')
+    plt.title('Outcomes for Russia')
+    if save == 'True':
+        plt.savefig(path_graph + '/Outcomes.png')
     if save == 'False':
         plt.show()
